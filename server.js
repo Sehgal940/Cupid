@@ -1,5 +1,6 @@
 const express=require('express')
 const server=express()
+require('dotenv').config()
 const router=require('./routes/route.js')
 const session=require('express-session')
 const passport=require("passport")
@@ -7,10 +8,10 @@ const strategy=require('passport-local').Strategy
 const user=require('./routes/users.js')
 const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
-require('dotenv').config()
 const PORT=process.env.PORT || 6010
 const mongoose=require('mongoose')
-mongoose.connect(process.env.URL)
+const uri=process.env.URL
+mongoose.connect(uri)
 
 //middlewares
 server.use(express.json())
