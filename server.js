@@ -7,6 +7,7 @@ const strategy=require('passport-local').Strategy
 const user=require('./routes/users.js')
 const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
+const PORT=process.env.PORT || 6010
 require('dotenv').config()
 
 //middlewares
@@ -46,7 +47,6 @@ passport.deserializeUser(async (id, done) => {
 });
 server.use(router)
 
-server.listen(process.env.port
-    ,()=>{
+server.listen(PORT,()=>{
     console.log('servered...')
 })
