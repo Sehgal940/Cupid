@@ -9,6 +9,8 @@ const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
 const PORT=process.env.PORT || 6010
 require('dotenv').config()
+const mongoose=require('mongoose')
+mongoose.connect(process.env.URL)
 
 //middlewares
 server.use(express.json())
