@@ -9,9 +9,6 @@ const user=require('./routes/users.js')
 const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
 const PORT=process.env.PORT || 6010
-const mongoose=require('mongoose')
-const uri=process.env.URL
-mongoose.connect(uri)
 
 //middlewares
 server.use(express.json())
