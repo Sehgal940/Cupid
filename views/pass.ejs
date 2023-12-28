@@ -1,0 +1,14 @@
+<%-include('../ejs Material/header.ejs')%>
+<div class="w-full h-screen flex items-center justify-center bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1429&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-center px-10 py-10 ">
+    <div class="xs:w-[50vw] xs:h-[50vh] sm:w-[50vw] sm:min-h-[70vh] md:w-[45vw] md:min-h-[70vh] lg:w-[35vw] lg:min-h-[70vh] xl:w-[30vw] xl:min-h-[70vh] bg-zinc-100 rounded-md  px-10 py-10">
+     <form method="post" action="/forgetpass">
+     <h1 class="text-2xl text-center">&#128513;</h1>
+     <input class="block border-2 mt-3 w-full h-10 px-7 py-4 outline-none rounded-md" type="email" placeholder="enter your email" name="email"required=""/>
+     <input style="font-family:'Arial'"class="block mt-9 w-full h-10  bg-red-500 rounded-full cursor-pointer text-white" type="submit" value="send"/>
+     <a class="block  font-semibold text-zinc-500 w-full mt-3 " href="/">Back ?  </a>
+     <p class="text-xs mt-4 text-zinc-500 text-center">By continuing, you agree to Cupid's Terms of Service
+        and acknowledge you've read our Privacy Policy.</p>
+    </form>
+  </div>
+ </div>
+<%-include('../ejs Material/footer.ejs')%>

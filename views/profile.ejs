@@ -1,0 +1,93 @@
+<%-include('../ejs Material/header.ejs')%>
+<div class="w-full min-h-screen bg-zinc-700  pt-1 font-serif ">
+<!-- image upload -->
+<form id="changeimg" hidden method="post"action="/imgupload"enctype=multipart/form-data>
+    <input type="file" name="image"/>
+</form>
+
+<!-- profile details -->
+    <div class="w-full text-zinc-100 flex flex-col justify-start items-center gap-1 mt-20 font-mono ">
+        
+        <div class="relative">
+            <span id="imgup" class="cursor-pointer w-7 h-7 absolute bottom-0 right-0 bg-blue-600 border-2 flex justify-center items-center rounded-full">
+                <i  class="ri-pencil-fill"></i>
+            </span>
+
+            <div class="w-[100px] h-[100px] bg-zinc-200 border-2 rounded-full overflow-hidden">
+                <%if(img)
+                {
+                    %><img class="h-full w-full" src="/images/uploads/<%=img%>" alt="."/><%
+                }
+                else 
+                {
+                    %><img class="h-full w-full" src="/profileimage.avif"/><%
+                }
+                %>
+            <!-- <img class="h-full w-full" src="/images/uploads/<%=img%>" alt="."/> -->
+            
+            </div>
+        </div>
+
+        <h1 class="text-zinc-100 text-2xl font-semibold"><%=name%></h1>
+        <div class="flex justify-center gap-1 items-center">
+        <button id="cname"class="mt-1 text-zinc-200 px-6 py-2 bg-zinc-600 text-xs rounded-full font-semibold">Edit</button>
+
+        <form id="editname" method="post" hidden action="/editname">
+            <button id="close" class="border-2 cursor-pointer px-3 py-1 text-sm  bg-red-500 text-white  rounded-lg">Close</button>
+            <input placeholder="<%=uname%>" class="border-2 text-black outline-none rounded-md px-2 py-1" required type="type" name="editname"/>
+            <button id="change" class=" border-2 cursor-pointer px-3 py-1 text-sm  bg-blue-500  rounded-lg" value="submit" >Change</button>
+        </form>
+        </div>
+        <a href="/add"class="px-5 py-2 rounded-lg bg-red-600 text-md mt-5">+ Post</a>
+    </div>
+
+<!-- cards  -->
+    <div class=" flex flex-wrap  gap-10 px-20 text-zinc-100 mt-2 mb-3 ">
+        <%pimg.forEach((val)=>{
+            %>
+            <div class="card">
+                <div class="w-[150px] h-[200px] bg-zinc-200 rounded-md overflow-hidden ">
+                <img class="h-full min-w-[150px] " src="/images/uploads/<%=val.postImg%>"/>
+                </div>
+                <h1 class="text-xl mt-3"><em><%=val.title%></em></h3>
+                <h3 class="text-sm mt-1"><em><%=val.description%></em></h1>
+                <div class="flex justify-start gap-2">
+                <a href="/download/<%=val._id%>"><button class=" cursor-pointer bg-blue-600 rounded-lg px-2 py-2 text-sm">download</button></a>
+                <a href="/delete/<%=val._id%>"><button class=" cursor-pointer bg-red-600 rounded-lg px-2 py-2 text-sm">delete</button></a>
+                </div>
+              </div>
+            <%
+        })%>
+        
+    </div>
+</div>
+<!-- script  -->
+<script>
+        let imgup = document.getElementById('imgup');
+        let fileInput = document.querySelector("#changeimg input[type='file']");
+
+        imgup.addEventListener('click', () => {
+            fileInput.click();
+        });
+        fileInput.addEventListener('change',()=>{
+         document.getElementById('changeimg').submit();
+        })
+
+        const cname=document.getElementById('cname')
+        const close=document.getElementById('close')
+        const change=document.getElementById('change')
+        const inp=document.querySelector('#editname input[type="text"]')
+        cname.addEventListener('click',()=>{
+           const f=document.querySelector('#editname')
+           f.removeAttribute('hidden')
+           cname.setAttribute('hidden',true)
+        })
+        close.addEventListener('click',(e)=>{
+            e.preventDefault()
+           const f=document.querySelector('#editname')
+           f.setAttribute('hidden',true)
+           cname.removeAttribute('hidden')
+        })
+        
+</script>
+<%-include('../ejs Material/footer.ejs')%>
