@@ -7,8 +7,8 @@ const strategy=require('passport-local').Strategy
 const user=require('./routes/users.js')
 const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
-const PORT=process.env.PORT || 6010
 require('dotenv').config()
+const PORT=process.env.PORT || 6010
 const mongoose=require('mongoose')
 mongoose.connect(process.env.URL)
 
