@@ -93,7 +93,6 @@ router.post('/register', async (req, res) => {
 });
 
 
-
 //----------------logout
 router.get('/logout',isAuthenticated,(req,res)=>{
     req.logout((err)=>(err))
@@ -211,7 +210,7 @@ router.post('/editname',isAuthenticated,async(req,res)=>{
         res.redirect('/profile')
     }
 })
-
+''
 router.get('/Nvalidname',isAuthenticated,async(req,res)=>{
     const getUser=await user.findOne({username:req.user.username}).populate("posts")  //opening posts
     const i=getUser.posts
@@ -260,7 +259,25 @@ router.get('/delete/:id',isAuthenticated,async(req,res)=>{
     res.redirect('/profile')
 })
 
-
+//delete account
+router.get('/account',isAuthenticated,async(req,res)=>{
+    res.render('account',{title:'Cupid | account',nav:false})
+})
+router.post('/account',isAuthenticated,async(req,res)=>{
+    const foundUser=await user.findOne({username:req.user.username})
+    const id=foundUser?._id
+    const password=await bcrypt.compare(req.body.password,foundUser.password)
+    if(password)
+    {
+        await post.deleteMany({user:id})
+        await user.deleteOne({username:req.user.username})
+        res.redirect('/')
+    }
+    else
+    {
+        res.render('account',{title:'Cupid | account',nav:false})
+    }
+})
 
 //exports
 module.exports = router;

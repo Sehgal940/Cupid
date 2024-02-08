@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const schema=new mongoose.Schema({
 user:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"userdata"
+    ref:"userdata"  //collection name
 },
 title:String,
 description:String,

@@ -6,7 +6,6 @@ const schema=new mongoose.Schema({
     email:{type:String},
     password:{type:String},
     profileImg:{type:String,defalut:'image'},
-    boards:[],
     posts:[
         {
         type:mongoose.Schema.Types.ObjectId,

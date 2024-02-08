@@ -23,7 +23,6 @@
                     %><img class="h-full w-full" src="/profileimage.avif"/><%
                 }
                 %>
-            <!-- <img class="h-full w-full" src="/images/uploads/<%=img%>" alt="."/> -->
             
             </div>
         </div>
@@ -33,9 +32,9 @@
         <button id="cname"class="mt-1 text-zinc-200 px-6 py-2 bg-zinc-600 text-xs rounded-full font-semibold">Edit</button>
 
         <form id="editname" method="post" hidden action="/editname">
-            <button id="close" class="border-2 cursor-pointer px-3 py-1 text-sm  bg-red-500 text-white  rounded-lg">Close</button>
+            <button id="close" class="border-2 cursor-pointer px-3 py-1 text-md  bg-red-500 text-white  rounded-lg"><i class="ri-close-line"></i></button>
             <input placeholder="<%=uname%>" class="border-2 text-black outline-none rounded-md px-2 py-1" required type="type" name="editname"/>
-            <button id="change" class=" border-2 cursor-pointer px-3 py-1 text-sm  bg-blue-500  rounded-lg" value="submit" >Change</button>
+            <button id="change" class=" border-2 cursor-pointer px-3 py-1 text-md  bg-blue-500  rounded-lg" value="submit" ><i class="ri-check-line"></i></button>
         </form>
         </div>
         <a href="/add"class="px-5 py-2 rounded-lg bg-red-600 text-md mt-5">+ Post</a>
@@ -46,14 +45,16 @@
         <%pimg.forEach((val)=>{
             %>
             <div class="card">
-                <div class="w-[150px] h-[200px] bg-zinc-200 rounded-md overflow-hidden ">
+                <div class="w-[250px] h-[200px] bg-zinc-200 rounded-md overflow-hidden ">
                 <img class="h-full min-w-[150px] " src="/images/uploads/<%=val.postImg%>"/>
                 </div>
-                <h1 class="text-xl mt-3"><em><%=val.title%></em></h3>
-                <h3 class="text-sm mt-1"><em><%=val.description%></em></h1>
-                <div class="flex justify-start gap-2">
-                <a href="/download/<%=val._id%>"><button class=" cursor-pointer bg-blue-600 rounded-lg px-2 py-2 text-sm">download</button></a>
-                <a href="/delete/<%=val._id%>"><button class=" cursor-pointer bg-red-600 rounded-lg px-2 py-2 text-sm">delete</button></a>
+                <div class="flex justify-between gap-2 mt-2">
+                <a href="/download/<%=val._id%>"><button class=" cursor-pointer bg-blue-600 rounded-lg px-2 py-1 text-md"><i class="ri-download-2-line"></i></button></a>
+                <a href="/delete/<%=val._id%>"><button class=" cursor-pointer bg-red-600 rounded-lg px-2 py-1 text-md"><i class="ri-delete-bin-6-line"></i></button></a>
+                </div>
+                <div class="max-w-[250px] flex flex-col mt-2">
+                <h1 class="text-xl "><em><%=val.title%></em></h3>
+                <h3 class="text-sm "><%=val.description%></h1>
                 </div>
               </div>
             <%

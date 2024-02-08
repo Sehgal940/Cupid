@@ -8,7 +8,7 @@ const strategy=require('passport-local').Strategy
 const user=require('./routes/users.js')
 const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
-const PORT=process.env.PORT || 6010
+// const PORT=process.env.PORT || 3000
 
 //middlewares
 server.use(express.json())
@@ -25,7 +25,7 @@ server.use(passport.initialize())
 server.use(passport.session())
 
 passport.use(new strategy(async (username, password, done) => {
-    const foundUser = await user.findOne({ username: username }); // Rename the variable here
+    const foundUser = await user.findOne({ username: username }); 
     if (foundUser) {
         const passTrue = await bcrypt.compare(password, foundUser.password);
         if (passTrue) return done(null, foundUser);
@@ -47,6 +47,6 @@ passport.deserializeUser(async (id, done) => {
 });
 server.use(router)
 
-server.listen(PORT,()=>{
+server.listen(3000,()=>{
     console.log('servered...')
 })
