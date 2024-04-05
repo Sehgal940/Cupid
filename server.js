@@ -8,7 +8,6 @@ const strategy=require('passport-local').Strategy
 const user=require('./routes/users.js')
 const bcrypt=require('bcrypt')
 const flash=require('connect-flash')
-// const PORT=process.env.PORT || 3000
 
 //middlewares
 server.use(express.json())

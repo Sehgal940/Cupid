@@ -20,7 +20,7 @@ const upload=multer({
         },
         filename:(req,file,cb)=>{
             const unique=uuidv4();
-            cb(null,unique + path.extname(file.originalname))
+            cb(null,unique+path.extname(file.originalname))
         }
     })
 })
@@ -39,10 +39,10 @@ function isAuthenticated(req,res,next){
 }
 
 
-
 //--------------------------------------------------------------routes
 
 //----------------login-get/post
+
 router.get('/', (req, res) => {
     res.render('index', { title: 'Cupid | Welcome' ,msg:'',nav:false});
 });
@@ -237,7 +237,7 @@ router.post('/createpost', isAuthenticated, upload.single('postimg'), async (req
         user:userToUpdate._id,
         title:req.body.title,
         description:req.body.description,
-        postImg:req.file.filename
+        postImg:req.file?.filename
     })
     userToUpdate.posts.push(p._id)
     await userToUpdate.save()
@@ -258,6 +258,8 @@ router.get('/delete/:id',isAuthenticated,async(req,res)=>{
     const getPost=await post.deleteOne({_id:id}) 
     res.redirect('/profile')
 })
+
+
 
 //delete account
 router.get('/account',isAuthenticated,async(req,res)=>{
